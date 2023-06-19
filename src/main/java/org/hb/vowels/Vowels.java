@@ -1,4 +1,4 @@
-package org.hb;
+package org.hb.vowels;
 
 public class Vowels {
 

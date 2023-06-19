@@ -1,5 +1,6 @@
-package org.hb;
+package org.hb.vowels;
 
+import org.hb.vowels.Vowels;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
