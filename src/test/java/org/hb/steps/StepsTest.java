@@ -21,30 +21,30 @@ class StepsTest {
     }
 
     @Test
-    public void threeStepsTest(){
+    public void threeStepsTest() {
         int n = 3;
         List<String> expectedlist = List.of("#  ", "## ", "###");
 
-        test(expectedlist, n);
+        testSolution(expectedlist, n);
     }
 
     @Test
-    public void fiveStepsTest(){
+    public void fiveStepsTest() {
         int n = 5;
         List<String> expectedlist = List.of("#    ", "##   ", "###  ", "#### ", "#####");
 
-        test(expectedlist, n);
+        testShiftSolution(expectedlist, n);
     }
 
     @Test
-    public void sevenStepsTest(){
+    public void sevenStepsTest() {
         int n = 7;
         List<String> expectedlist = List.of("#      ", "##     ", "###    ", "####   ", "#####  ", "###### ", "#######");
 
-        test(expectedlist, n);
+        testRecursiveSolution(expectedlist, n);
     }
 
-    public void test(List<String> expectedlist, int n){
+    public void testSolution(List<String> expectedlist, int n) {
         Steps steps = new Steps();
         steps.printSteps(n);
 
@@ -54,7 +54,37 @@ class StepsTest {
         // Verify that the console.log output matches the expected value
         verify(mockPrintStream, times(n)).println(argumentCaptor.capture());
 
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
+            assertEquals(expectedlist.get(i), argumentCaptor.getAllValues().get(i));
+        }
+    }
+
+    public void testShiftSolution(List<String> expectedlist, int n) {
+        Steps steps = new Steps();
+        steps.printStepsUsingShift(n);
+
+        // Create an ArgumentCaptor to capture the printed output
+        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+
+        // Verify that the console.log output matches the expected value
+        verify(mockPrintStream, times(n)).println(argumentCaptor.capture());
+
+        for (int i = 0; i < n; i++) {
+            assertEquals(expectedlist.get(i), argumentCaptor.getAllValues().get(i));
+        }
+    }
+
+    public void testRecursiveSolution(List<String> expectedlist, int n) {
+        Steps steps = new Steps();
+        steps.printStepsRecursive(n);
+
+        // Create an ArgumentCaptor to capture the printed output
+        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+
+        // Verify that the console.log output matches the expected value
+        verify(mockPrintStream, times(n)).println(argumentCaptor.capture());
+
+        for (int i = 0; i < n; i++) {
             assertEquals(expectedlist.get(i), argumentCaptor.getAllValues().get(i));
         }
     }
