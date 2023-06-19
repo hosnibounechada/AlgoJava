@@ -10,21 +10,19 @@ class PalindromeTest {
     void itShouldPalindrome() {
         // Given
         String str = "abba";
-        boolean expected = true;
         // When
         Palindrome palindrome = new Palindrome();
         // Then
-        assertEquals(expected, palindrome.palindrome(str));
+        assertTrue(palindrome.palindrome(str));
     }
 
     @Test
     void itShouldNotBePalindrome() {
         // Given
         String str = "abcd";
-        boolean expected = false;
         // When
         Palindrome palindrome = new Palindrome();
         // Then
-        assertEquals(expected, palindrome.palindrome(str));
+        assertFalse(palindrome.palindrome(str));
     }
 }
