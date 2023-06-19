@@ -1,12 +1,10 @@
 package org.hb.fizzbuzz;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +16,7 @@ import static org.mockito.Mockito.*;
 class FizzBuzzTest {
     @Mock
     private PrintStream mockPrintStream = mock(PrintStream.class);
+
     @BeforeEach
     void setUp() {
         System.setOut(mockPrintStream);
@@ -26,40 +25,31 @@ class FizzBuzzTest {
     @Test
     public void firstFizzBuzzTest() {
 
+        int n = 5;
         FizzBuzz fizzBuzz = new FizzBuzz();
-        fizzBuzz.fizzBuzz(5);
+        fizzBuzz.fizzBuzz(n);
 
         // Verifying the number of times System.out.println() is called
-        verify(mockPrintStream, times(5)).println(anyString());
+        verify(mockPrintStream, times(n)).println(anyString());
 
     }
 
     @Test
     public void secondFizzBuzzTest() {
+        int n = 15;
+        List<String> expectedlist = List.of("1", "2", "fizz", "4", "buzz", "fizz", "7", "8", "fizz", "buzz", "11", "fizz", "13", "14", "fizzbuzz");
 
         FizzBuzz fizzBuzz = new FizzBuzz();
-        fizzBuzz.fizzBuzz(15);
+        fizzBuzz.fizzBuzz(n);
 
         // Create an ArgumentCaptor to capture the printed output
         ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
 
         // Verify that the console.log output matches the expected value
-        verify(mockPrintStream, times(15)).println(argumentCaptor.capture());
+        verify(mockPrintStream, times(n)).println(argumentCaptor.capture());
 
-        assertEquals("1", argumentCaptor.getAllValues().get(0));
-        assertEquals("2", argumentCaptor.getAllValues().get(1));
-        assertEquals("fizz", argumentCaptor.getAllValues().get(2));
-        assertEquals("4", argumentCaptor.getAllValues().get(3));
-        assertEquals("buzz", argumentCaptor.getAllValues().get(4));
-        assertEquals("fizz", argumentCaptor.getAllValues().get(5));
-        assertEquals("7", argumentCaptor.getAllValues().get(6));
-        assertEquals("8", argumentCaptor.getAllValues().get(7));
-        assertEquals("fizz", argumentCaptor.getAllValues().get(8));
-        assertEquals("buzz", argumentCaptor.getAllValues().get(9));
-        assertEquals("11", argumentCaptor.getAllValues().get(10));
-        assertEquals("fizz", argumentCaptor.getAllValues().get(11));
-        assertEquals("13", argumentCaptor.getAllValues().get(12));
-        assertEquals("14", argumentCaptor.getAllValues().get(13));
-        assertEquals("fizzbuzz", argumentCaptor.getAllValues().get(14));
+        for(int i = 0; i < n; i++){
+            assertEquals(expectedlist.get(i), argumentCaptor.getAllValues().get(i));
+        }
     }
 }
