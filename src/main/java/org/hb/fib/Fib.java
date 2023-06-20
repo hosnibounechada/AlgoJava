@@ -1,5 +1,8 @@
 package org.hb.fib;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fib {
 
     // --- Directions
@@ -11,6 +14,8 @@ public class Fib {
     // forms the first ten entries of the fibonacci series.
     // Example:
     //   fib(4) === 3
+
+    private final Map<Integer, Integer> cache = new HashMap<>();
 
     public int fib(int n){
         if(n < 2) return n;
@@ -28,6 +33,13 @@ public class Fib {
 
     public int fibRecursive(int n){
         if(n < 2) return n;
-        return fib(n -1) + fib(n - 2);
+
+        if(cache.containsKey(n)) return cache.get(n);
+
+        int result = fibRecursive(n -1) + fibRecursive(n - 2);
+
+        cache.put(n, result);
+
+        return result;
     }
 }
