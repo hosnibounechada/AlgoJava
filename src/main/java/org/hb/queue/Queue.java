@@ -30,6 +30,10 @@ public class Queue {
         size--;
         return item;
     }
+    public int peek(){
+        if(size == 0) return 0;
+        return arrayQueue[size - 1];
+    }
     public int getSize(){
         return size;
     }
