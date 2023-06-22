@@ -71,10 +71,6 @@ public class Tree<T> {
 
     // Getters, Setters, ToString, Equals & HashCode
 
-    public Node<T> getRoot() {
-        return root;
-    }
-
     public void setRoot(Node<T> root) {
         this.root = root;
     }

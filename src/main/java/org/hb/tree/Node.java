@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Node<T> {
-    private T data;
+    private final T data;
     private List<Node<T>> children;
 
     public Node(T data){
@@ -14,7 +14,7 @@ public class Node<T> {
     }
 
     public void add(T data){
-        children.add(new Node<T>(data));
+        children.add(new Node<>(data));
     }
 
     public void remove(T data){
@@ -27,16 +27,8 @@ public class Node<T> {
         return data;
     }
 
-    public void setData(T data) {
-        this.data = data;
-    }
-
     public List<Node<T>> getChildren() {
         return children;
-    }
-
-    public void setChildren(List<Node<T>> children) {
-        this.children = children;
     }
 
     @Override

@@ -29,7 +29,7 @@ class NodeTest {
 
         // Then
 
-        assertEquals("b", nodeA.getChildren().get(0).getData());
+        assertEquals(expectedValue, nodeA.getChildren().get(0).getData());
         assertEquals(expectedLength, nodeA.getChildren().size());
     }
 
