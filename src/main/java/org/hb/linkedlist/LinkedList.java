@@ -6,6 +6,10 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class LinkedList<T> implements Iterable<T> {
+    // --- Directions
+    // Implement classes Node and Linked Lists
+    // See 'directions' document
+
     private Node<T> head;
     private int size;
 
