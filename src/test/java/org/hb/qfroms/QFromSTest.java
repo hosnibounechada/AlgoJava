@@ -12,7 +12,7 @@ class QFromSTest {
         int capacity = 3;
         int expectedItem = 1;
         // When
-        QFromS q = new QFromS(capacity);
+        QFromS<Integer> q = new QFromS<>(capacity);
         q.add(1);
         q.add(2);
         q.add(3);
@@ -27,11 +27,12 @@ class QFromSTest {
         int capacity = 3;
         int expectedItem = 2;
         // When
-        QFromS q = new QFromS(capacity);
+        QFromS<Integer> q = new QFromS<>(capacity);
         q.add(1);
         q.add(2);
         q.add(3);
         q.remove();
+        System.out.println();
         int item = q.remove();
         // Then
         assertEquals(expectedItem, item);
@@ -43,7 +44,7 @@ class QFromSTest {
         int capacity = 3;
         int expectedItem = 3;
         // When
-        QFromS q = new QFromS(capacity);
+        QFromS<Integer> q = new QFromS<>(capacity);
         q.add(1);
         q.add(2);
         q.add(3);

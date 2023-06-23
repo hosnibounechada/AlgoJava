@@ -1,47 +1,47 @@
 package org.hb.stack;
 
-public class Stack {
+import org.hb.linkedlist.LinkedList;
+
+public class Stack<T> {
     private final int capacity;
-    private int size;
-    private final int[] stack;
+    private final LinkedList<T> arrayList;
 
     public Stack(int capacity) {
         this.capacity = capacity;
-        size = 0;
-        stack = new int[capacity];
+        arrayList = new LinkedList<>();
     }
 
-    public void push(int item) {
-        if (size == capacity) return;
-
-        stack[size] = item;
-
-        size++;
+    public boolean isEmpty(){
+        return arrayList.isEmpty();
     }
 
-    public int pop() {
-        if (size == 0) return 0;
+    public void push(T item) {
+        if (arrayList.getSize() == capacity) return;
 
-        int item = stack[size - 1];
+        arrayList.add(item);
+    }
 
-        stack[size - 1] = 0;
+    public T pop() {
+        if (arrayList.isEmpty()) return null;
 
-        size--;
+        T item = arrayList.getLast().getData();
+
+        arrayList.removeLast();
 
         return item;
     }
 
-    public int peek() {
-        if (size == 0) return 0;
+    public T peek() {
+        if (arrayList.isEmpty()) return null;
 
-        return stack[size - 1];
+        return arrayList.getLast().getData();
     }
 
-    public int[] getStack() {
-        return stack;
+    public LinkedList<T> getArrayList() {
+        return arrayList;
     }
 
     public int getSize() {
-        return size;
+        return arrayList.getSize();
     }
 }

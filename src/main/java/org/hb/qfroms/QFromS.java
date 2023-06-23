@@ -2,7 +2,7 @@ package org.hb.qfroms;
 
 import org.hb.stack.Stack;
 
-public class QFromS {
+public class QFromS<T> {
     // --- Directions
     // Implement a Queue datastructures using two stacks.
     // *Do not* create an array inside the 'Queue' class.
@@ -17,47 +17,47 @@ public class QFromS {
     //     q.remove(); // returns 1
     //     q.remove(); // returns 2
     private final int capacity;
-    private final Stack stackOne;
-    private final Stack stackTwo;
+    private final Stack<T> stackOne;
+    private final Stack<T> stackTwo;
 
     public QFromS(int capacity) {
         this.capacity = capacity;
-        this.stackOne = new Stack(capacity);
-        this.stackTwo = new Stack(capacity);
+        this.stackOne = new Stack<>(capacity);
+        this.stackTwo = new Stack<>(capacity);
     }
 
-    public void add(int item) {
+    public void add(T item) {
         if (stackTwo.getSize() == capacity) return;
 
         stackOne.push(item);
     }
 
-    public int remove() {
-        if (stackOne.getSize() == 0) return 0;
+    public T remove() {
+        if (stackOne.isEmpty()) return null;
 
-        while (stackOne.peek() != 0) {
+        while (!stackOne.isEmpty()) {
             stackTwo.push(stackOne.pop());
         }
 
-        int item = stackTwo.pop();
+        T item = stackTwo.pop();
 
-        while (stackTwo.peek() != 0) {
+        while (!stackTwo.isEmpty()) {
             stackOne.push(stackTwo.pop());
         }
 
         return item;
     }
 
-    public int peek() {
-        if (stackOne.getSize() == 0) return 0;
+    public T peek() {
+        if (stackOne.getSize() == 0) return null;
 
-        while (stackOne.peek() != 0) {
+        while (!stackOne.isEmpty()) {
             stackTwo.push(stackOne.pop());
         }
 
-        int item = stackTwo.peek();
+        T item = stackTwo.peek();
 
-        while (stackTwo.peek() != 0) {
+        while (stackTwo.isEmpty()) {
             stackOne.push(stackTwo.pop());
         }
 

@@ -1,44 +1,48 @@
 package org.hb.queue;
 
-public class Queue {
-    private final int[] arrayQueue;
+import org.hb.linkedlist.LinkedList;
+
+public class Queue<T> {
+    private final LinkedList<T> arrayList;
     private final int capacity;
-    private int size;
     public Queue(int capacity) {
         this.capacity = capacity;
-        this.size = 0;
-        arrayQueue = new int[capacity];
+        arrayList = new LinkedList<>();
     }
 
-    public void enqueue(int item){
-        if(size == capacity) {
+    public void enqueue(T item){
+        if(arrayList.getSize() == capacity) {
             return;
         }
-        for(int i = size; i > 0; i--){
-            arrayQueue[i] = arrayQueue[i - 1];
-        }
-        arrayQueue[0] = item;
-        size++;
+
+        arrayList.add(item);
     }
 
-    public int dequeue(){
-        if(size == 0) {
-            return -1;
+    public T dequeue(){
+        if(arrayList.getSize() == 0) {
+            return null;
         }
-        int item = arrayQueue[size - 1];
-        arrayQueue[size - 1] = 0;
-        size--;
+
+        T item = arrayList.getFirst().getData();
+
+        arrayList.removeFirst();
+
         return item;
     }
-    public int peek(){
-        if(size == 0) return 0;
-        return arrayQueue[size - 1];
+    public T peek(){
+        if(arrayList.isEmpty()) return null;
+
+        return arrayList.getFirst().getData();
     }
-    public int getSize(){
-        return size;
+    public boolean isEmpty(){
+        return arrayList.isEmpty();
     }
 
-    public int[] getArrayQueue(){
-        return arrayQueue;
+    public int getSize(){
+        return arrayList.getSize();
+    }
+
+    public LinkedList<T> getArrayList() {
+        return arrayList;
     }
 }

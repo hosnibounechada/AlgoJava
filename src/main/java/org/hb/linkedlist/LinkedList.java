@@ -1,5 +1,6 @@
 package org.hb.linkedlist;
 
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.BiConsumer;
@@ -17,8 +18,12 @@ public class LinkedList<T> implements Iterable<T> {
         this.size = 0;
     }
 
-    public int getSize(){
+    public int getSize() {
         return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     public void add(T data) {
@@ -128,10 +133,11 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public void removeAt(int index) {
-        if (head == null) return;
+        if (head == null || size == 0) return;
 
         if (index == 0) {
             head = head.getNext();
+            size--;
             return;
         }
 
@@ -160,6 +166,24 @@ public class LinkedList<T> implements Iterable<T> {
             current = current.getNext();
             index++;
         }
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        T[] array = (T[]) Array.newInstance(head.getData().getClass(), size);
+
+        Node<T> current = head;
+
+        int counter = 0;
+
+        while (current != null) {
+            array[counter++] = current.getData();
+
+            current = current.getNext();
+        }
+
+        return array;
     }
 
     @Override
