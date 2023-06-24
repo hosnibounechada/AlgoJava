@@ -1,18 +1,31 @@
 package org.hb.bst;
 
 public class BST {
-    public <T extends Comparable<T>> boolean search(T data, Node<T> root) {
-        if (data.compareTo(root.getData()) == 0) {
-            return true;
-        } else if (data.compareTo(root.getData()) < 0) {
-            if (root.getLeft() == null) return false;
+    // --- Directions
+    // 1) Implement the Node class to create
+    // a binary search tree.  The constructor
+    // should initialize values 'data', 'left',
+    // and 'right'.
+    // 2) Implement the 'insert' method for the
+    // Node class.  Insert should accept an argument
+    // 'data', then create an insert a new node
+    // at the appropriate location in the tree.
+    // 3) Implement the 'contains' method for the BTS
+    // class.  Contains should accept a 'data' argument
+    // and return the Node in the tree with the same value.
 
-            return search(data, root.getLeft());
-        } else if (data.compareTo(root.getData()) > 0) {
-            if (root.getRight() == null) return false;
+    public <T extends Comparable<T>> Node<T> contains(T data, Node<T> node) {
+        if (data.compareTo(node.getData()) == 0) {
+            return node;
+        } else if (data.compareTo(node.getData()) < 0) {
+            if (node.getLeft() == null) return null;
 
-            return search(data, root.getRight());
+            return contains(data, node.getLeft());
+        } else if (data.compareTo(node.getData()) > 0) {
+            if (node.getRight() == null) return null;
+
+            return contains(data, node.getRight());
         }
-        return false;
+        return null;
     }
 }

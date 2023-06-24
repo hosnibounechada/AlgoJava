@@ -9,7 +9,7 @@ class BSTTest {
     @Test
     void itShouldSearchAndFindNode() {
         // Given
-        boolean expectedResult = true;
+        String expectedResult = "A";
 
         Node<String> root = new Node<>("D");
         root.insert("B");
@@ -21,16 +21,15 @@ class BSTTest {
 
         // When
         BST bst = new BST();
-        boolean result = bst.search("A", root);
+        Node<String> node = bst.contains("A", root);
 
         // Then
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, node.getData());
     }
 
     @Test
     void itShouldSearchAndNotFindNode() {
         // Given
-        boolean expectedResult = false;
 
         Node<String> root = new Node<>("D");
         root.insert("B");
@@ -42,9 +41,9 @@ class BSTTest {
 
         // When
         BST bst = new BST();
-        boolean result = bst.search("R", root);
+        Node<String> node = bst.contains("R", root);
 
         // Then
-        assertEquals(expectedResult, result);
+        assertNull(node);
     }
 }
