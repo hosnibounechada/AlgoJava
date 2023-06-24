@@ -75,6 +75,10 @@ public class Tree<T> {
         this.root = root;
     }
 
+    public Node<T> getRoot() {
+        return root;
+    }
+
     @Override
     public String toString() {
         return "Tree{" +
