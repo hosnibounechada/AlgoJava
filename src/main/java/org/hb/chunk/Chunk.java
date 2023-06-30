@@ -12,7 +12,7 @@ public class Chunk {
     // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
     public int[][] chunk(int[] arr, int size) {
-        int[][] res = new int[Math.ceilDiv(arr.length, size)][];
+        int[][] res = new int[(int) Math.ceil((double) arr.length / size)][];
 
         int i = 0;
         int row = 0;
